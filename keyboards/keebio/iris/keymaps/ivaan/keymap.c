@@ -12,9 +12,9 @@
 #define IN_CUT LCTL(KC_X)
 #define IN_UNDO LCTL(KC_Z)
 #define IN_REDO LCTL(KC_Y)
-#define IN_SPC LT(2, KC_SPC)
+#define IN_SPC2 LT(2, KC_SPC)
 #define IN_SPC3 LT(3, KC_SPC)
-#define IN_ENT LT(1, KC_ENT)
+#define IN_ENT1 LT(1, KC_ENT)
 #define IN_ENT3 LT(3, KC_ENT)
 
 // Left-hand home row mods
@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,          KC_END,  KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, MO(1),   IN_ENT,                    IN_SPC,  MO(2),   KC_RALT
+                                    KC_LGUI, MO(1),   IN_ENT1,                    IN_SPC2,  MO(2),   KC_RALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______, _______,          _______, _______, KC_1,    KC_2,    KC_3,    _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    _______, _______, _______,                   _______, _______, KC_0
+                                    _______, _______, _______,                   KC_PSCR, _______, KC_0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
@@ -115,47 +115,26 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }
     return true;
 };
-/*
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-  switch (keycode) {
-    case QWERTY:
-      if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
-      }
-      return false;
-      break;
-    case LOWER:
-      if (record->event.pressed) {
-        layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case RAISE:
-      if (record->event.pressed) {
-        layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      } else {
-        layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
-      }
-      return false;
-      break;
-    case ADJUST:
-      if (record->event.pressed) {
-        layer_on(_ADJUST);
-      } else {
-        layer_off(_ADJUST);
-      }
-      return false;
-      break;
-  }
-  return true;
+
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case SFT_D:
+        case SFT_K:
+            return TAPPING_TERM_LESS;
+        case GUI_SCLN:
+        case GUI_A:
+        case IN_ENT1:
+        case IN_SPC2:
+        case IN_ENT3:
+        case IN_SPC3:
+        case ALT_S:
+        case ALT_L:
+            return TAPPING_TERM_MORE;
+        default:
+            return TAPPING_TERM;
+    }
 }
-*/
+
 bool encoder_update_user(uint8_t index, bool clockwise) {
     if (index == 0) {
         if (clockwise) {
