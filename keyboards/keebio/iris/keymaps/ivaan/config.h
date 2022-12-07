@@ -21,9 +21,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 // home row mods
-#define TAPPING_TERM_LESS 150
+#define TAPPING_TERM_LESS 100
 #define TAPPING_TERM 200
 #define TAPPING_TERM_MORE 300
+#define TAPPING_TERM_EVEN_MORE 400
 #define TAPPING_TERM_PER_KEY
 
 // Prevent normal rollover on alphas from accidentally triggering mods.
@@ -31,3 +32,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 // but do allow nested taps to cause hold mods
 #define PERMISSIVE_HOLD
+
+// combos
+#define COMBO_COUNT 3

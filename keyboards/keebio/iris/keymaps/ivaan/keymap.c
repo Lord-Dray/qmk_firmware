@@ -13,9 +13,9 @@
 #define IN_UNDO LCTL(KC_Z)
 #define IN_REDO LCTL(KC_Y)
 #define IN_SPC2 LT(2, KC_SPC)
-#define IN_TAB3 LT(3, KC_TAB)
+#define IN_SPC3 LT(3, KC_SPC)
 #define IN_ENT1 LT(1, KC_ENT)
-#define IN_ENT3 LT(3, KC_ENT)
+#define IN_TAB3 LT(3, KC_TAB)
 
 // Left-hand home row mods
 #define GUI_A LGUI_T(KC_A)
@@ -72,7 +72,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TRNS, IN_UNDO, IN_CUT,  IN_CPY,  IN_PST,  KC_LBRC, KC_TRNS,          KC_TRNS, KC_RBRC, KC_END,  KC_DOWN, KC_PGDN, KC_MINS, KC_TRNS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_TRNS, KC_TRNS, KC_TRNS,                   IN_TAB3, MO(3),   KC_INS
+                                    KC_TRNS, KC_TRNS, KC_TRNS,                   IN_SPC3, MO(3),   KC_INS
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_TRNS,          KC_TRNS, KC_RCBR, KC_END,  KC_DOWN, KC_PGDN, KC_MINS, KC_TRNS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_TRNS, MO(3),   IN_ENT3,                   KC_TRNS, KC_TRNS, KC_APP
+                                    KC_TRNS, MO(3),   IN_TAB3,                   KC_TRNS, KC_TRNS, KC_APP
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -105,6 +105,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
+const uint16_t PROGMEM escape_combo_tg[] = {KC_T, KC_G, COMBO_END};
+const uint16_t PROGMEM backspace_combo_yh[] = {KC_Y, KC_H, COMBO_END};
+const uint16_t PROGMEM delete_combo_hn[] = {KC_H, KC_N, COMBO_END};
+combo_t key_combos[COMBO_COUNT] = {
+    COMBO(escape_combo_tg, KC_ESC),
+    COMBO(backspace_combo_yh, KC_BSPC),
+    COMBO(delete_combo_hn, KC_DEL),
+};
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case IN_GBY:
@@ -121,15 +130,16 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case SFT_D:
         case SFT_K:
             return TAPPING_TERM_LESS;
-        case GUI_SCLN:
-        case GUI_A:
         case IN_ENT1:
         case IN_SPC2:
-        case IN_ENT3:
         case IN_TAB3:
+        case IN_SPC3:
         case ALT_S:
         case ALT_L:
             return TAPPING_TERM_MORE;
+        case GUI_SCLN:
+        case GUI_A:
+            return TAPPING_TERM_EVEN_MORE;
         default:
             return TAPPING_TERM;
     }
