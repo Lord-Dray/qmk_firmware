@@ -21,7 +21,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 // home row mods
-#define TAPPING_TERM_LESS 100
+#define TAPPING_TERM_LESS 125
 #define TAPPING_TERM 200
 #define TAPPING_TERM_MORE 300
 #define TAPPING_TERM_EVEN_MORE 400
