@@ -34,4 +34,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 // combos
-#define COMBO_COUNT 3
+#define COMBO_COUNT 6
