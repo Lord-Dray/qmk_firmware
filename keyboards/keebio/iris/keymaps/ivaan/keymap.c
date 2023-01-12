@@ -82,7 +82,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TRNS, KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               IN_PST,  KC_HOME, KC_UP,   KC_PGUP, IN_CUT,  KC_TRNS,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_TRNS, GUI_0,  ALT_9,    SFT_8,  CTL_7,    KC_6,                               IN_CPY,  KC_LEFT, KC_DOWN, KC_RGHT, KC_EQL,  KC_TRNS,
+     KC_TRNS, GUI_0,  ALT_9,    SFT_8,  CTL_7,    KC_6,                               IN_CPY,  CTL_LEFT,SFT_DOWN,ALT_RGHT,GUI_EQL, KC_TRNS,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS, KC_LCBR, KC_TRNS,          KC_TRNS, KC_RCBR, KC_END,  KC_DOWN, KC_PGDN, KC_MINS, KC_TRNS,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -105,20 +105,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   )
 };
 
-const uint16_t PROGMEM escape_combo_tg[] = {KC_T, KC_G, COMBO_END};
-const uint16_t PROGMEM backspace_combo_yh[] = {KC_Y, KC_H, COMBO_END};
-const uint16_t PROGMEM delete_combo_hn[] = {KC_H, KC_N, COMBO_END};
-const uint16_t PROGMEM tictild_combo_tg[] = {KC_5, KC_6, COMBO_END};
-const uint16_t PROGMEM quotes_combo_gb[] = {KC_G, KC_B, COMBO_END};
-const uint16_t PROGMEM bslashpipe_combo_hn[] = {IN_CPY, KC_RBRC, COMBO_END};
+const uint16_t PROGMEM escape_combo_fg[] = {CTL_F, KC_G, COMBO_END};
+const uint16_t PROGMEM backspace_combo_yu[] = {KC_Y, KC_U, COMBO_END};
+const uint16_t PROGMEM delete_combo_hj[] = {KC_H, CTL_J, COMBO_END};
+const uint16_t PROGMEM tictild_combo_rt[] = {KC_R, KC_T, COMBO_END};
+const uint16_t PROGMEM quotes_combo_vb[] = {KC_V, KC_B, COMBO_END};
+const uint16_t PROGMEM bslashpipe_combo_nm[] = {KC_N, KC_M, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
-    COMBO(escape_combo_tg, KC_ESC),
-    COMBO(backspace_combo_yh, KC_BSPC),
-    COMBO(delete_combo_hn, KC_DEL),
-    COMBO(tictild_combo_tg, KC_GRV),
-    COMBO(quotes_combo_gb, KC_QUOT),
-    COMBO(bslashpipe_combo_hn, KC_BSLS),
+    COMBO(escape_combo_fg, KC_ESC),
+    COMBO(backspace_combo_yu, KC_BSPC),
+    COMBO(delete_combo_hj, KC_DEL),
+    COMBO(tictild_combo_rt, KC_GRV),
+    COMBO(quotes_combo_vb, KC_QUOT),
+    COMBO(bslashpipe_combo_nm, KC_BSLS),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
