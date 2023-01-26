@@ -58,7 +58,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,          KC_PSCR, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-                                    KC_LGUI, MO(1),   IN_ENT1,                    IN_SPC2,  MO(2),   KC_RALT
+                                    KC_LGUI, MO(1),   IN_ENT1,                   IN_SPC2, MO(2),   KC_RALT
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
@@ -92,7 +92,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [3] = LAYOUT(//IN_GBY
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     TG(4), _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                              _______, KC_7,    KC_8,    KC_9,    TG(3),   _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -102,8 +102,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   KC_PSCR, _______, KC_0
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
+  ),
+
+  [4] = LAYOUT(//IN_GBY
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     TG(4),   _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, KC_W,    KC_E,    _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, KC_A,    KC_S,    KC_D,    _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______,  _______, _______, _______, _______,         _______, _______, _______, _______, _______, _______, _______,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______, _______, KC_SPC,                    _______, _______, _______
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
+
+//KC_APP
+const uint16_t PROGMEM appkey_combo_commaperiod[] = {KC_COMM, KC_DOT, COMBO_END};
 
 const uint16_t PROGMEM escape_combo_fg[] = {CTL_F, KC_G, COMBO_END};
 const uint16_t PROGMEM backspace_combo_yu[] = {KC_Y, KC_U, COMBO_END};
@@ -112,13 +129,28 @@ const uint16_t PROGMEM tictild_combo_rt[] = {KC_R, KC_T, COMBO_END};
 const uint16_t PROGMEM quotes_combo_vb[] = {KC_V, KC_B, COMBO_END};
 const uint16_t PROGMEM bslashpipe_combo_nm[] = {KC_N, KC_M, COMBO_END};
 
+const uint16_t PROGMEM escape_combo_df[] = {SFT_D, CTL_F, COMBO_END};
+const uint16_t PROGMEM backspace_combo_ui[] = {KC_U, KC_I, COMBO_END};
+const uint16_t PROGMEM delete_combo_jk[] = {CTL_J, SFT_K, COMBO_END};
+const uint16_t PROGMEM tictild_combo_er[] = {KC_E, KC_R, COMBO_END};
+const uint16_t PROGMEM quotes_combo_cv[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM bslashpipe_combo_mcma[] = {KC_M, KC_COMM, COMBO_END};
+
 combo_t key_combos[COMBO_COUNT] = {
+    COMBO(appkey_combo_commaperiod, KC_APP),
     COMBO(escape_combo_fg, KC_ESC),
     COMBO(backspace_combo_yu, KC_BSPC),
     COMBO(delete_combo_hj, KC_DEL),
     COMBO(tictild_combo_rt, KC_GRV),
     COMBO(quotes_combo_vb, KC_QUOT),
     COMBO(bslashpipe_combo_nm, KC_BSLS),
+
+    COMBO(escape_combo_df, KC_ESC),
+    COMBO(backspace_combo_ui, KC_BSPC),
+    COMBO(delete_combo_jk, KC_DEL),
+    COMBO(tictild_combo_er, KC_GRV),
+    COMBO(quotes_combo_cv, KC_QUOT),
+    COMBO(bslashpipe_combo_mcma, KC_BSLS),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -168,4 +200,12 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
         }
     }
     return true;
+}
+
+void matrix_init_user(void) {
+   backlight_enable();
+   backlight_level(3);
+   rgblight_enable(); // Enable RGB by default
+   rgblight_sethsv(0, 255, 40);  // Set default HSV - red hue, full saturation, full brightness
+   rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
 }
