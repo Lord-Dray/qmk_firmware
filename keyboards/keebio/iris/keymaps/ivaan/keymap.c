@@ -136,34 +136,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //KC_APP
 const uint16_t PROGMEM appkey_combo_commaperiod[] = {KC_COMM, KC_DOT, COMBO_END};
 
-const uint16_t PROGMEM escape_combo_fg[] = {CTL_F, KC_G, COMBO_END};
-const uint16_t PROGMEM backspace_combo_yu[] = {KC_Y, KC_U, COMBO_END};
-const uint16_t PROGMEM delete_combo_hj[] = {KC_H, CTL_J, COMBO_END};
-const uint16_t PROGMEM tictild_combo_rt[] = {KC_R, KC_T, COMBO_END};
-const uint16_t PROGMEM quotes_combo_vb[] = {KC_V, KC_B, COMBO_END};
 const uint16_t PROGMEM bslashpipe_combo_nm[] = {KC_N, KC_M, COMBO_END};
 
-const uint16_t PROGMEM escape_combo_df[] = {SFT_D, CTL_F, COMBO_END};
+const uint16_t PROGMEM escape_combo_qw[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM backspace_combo_ui[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM delete_combo_jk[] = {CTL_J, SFT_K, COMBO_END};
-const uint16_t PROGMEM tictild_combo_er[] = {KC_E, KC_R, COMBO_END};
-const uint16_t PROGMEM quotes_combo_cv[] = {KC_C, KC_V, COMBO_END};
+const uint16_t PROGMEM tictild_combo_we[] = {KC_W, KC_E, COMBO_END};
+const uint16_t PROGMEM quotes_combo_lsemi[] = {ALT_L, GUI_SCLN, COMBO_END};
 const uint16_t PROGMEM bslashpipe_combo_mcma[] = {KC_M, KC_COMM, COMBO_END};
 
 combo_t key_combos[COMBO_COUNT] = {
     COMBO(appkey_combo_commaperiod, KC_APP),
-    COMBO(escape_combo_fg, KC_ESC),
-    COMBO(backspace_combo_yu, KC_BSPC),
-    COMBO(delete_combo_hj, KC_DEL),
-    COMBO(tictild_combo_rt, KC_GRV),
-    COMBO(quotes_combo_vb, KC_QUOT),
-    COMBO(bslashpipe_combo_nm, KC_BSLS),
-
-    COMBO(escape_combo_df, KC_ESC),
+    COMBO(escape_combo_qw, KC_ESC),
     COMBO(backspace_combo_ui, KC_BSPC),
     COMBO(delete_combo_jk, KC_DEL),
-    COMBO(tictild_combo_er, KC_GRV),
-    COMBO(quotes_combo_cv, KC_QUOT),
+    COMBO(tictild_combo_we, KC_GRV),
+    COMBO(quotes_combo_lsemi, KC_QUOT),
     COMBO(bslashpipe_combo_mcma, KC_BSLS),
 };
 
