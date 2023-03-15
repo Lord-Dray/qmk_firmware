@@ -34,7 +34,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define PERMISSIVE_HOLD
 
 // combos
-#define COMBO_COUNT 9
+#define COMBO_COUNT 8
 
 #define MOUSEKEY_INERTIA
 #define MOUSEKEY_MAX_SPEED 	64 // 	Maximum cursor speed at which acceleration stops

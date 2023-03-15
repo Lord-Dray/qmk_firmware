@@ -28,7 +28,7 @@
 #define CTL_J RCTL_T(KC_J)
 #define SFT_K RSFT_T(KC_K)
 #define ALT_L LALT_T(KC_L)
-#define GUI_SCLN RGUI_T(KC_SCLN)
+#define GUI_QUOT RGUI_T(KC_QUOT)
 
 // Left-hand layer 1 home row mods
 #define GUI_0 LGUI_T(KC_0)
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,                               KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_SCLN, KC_QUOT,
+     KC_LCTL, GUI_A,   ALT_S,   SFT_D,   CTL_F,   KC_G,                               KC_H,    CTL_J,   SFT_K,   ALT_L,   GUI_QUOT, KC_QUOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_MUTE,          KC_PSCR, KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_RSFT,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
@@ -136,11 +136,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      TG(4),   _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                              _______,KC_MS_BTN1,KC_MS_UP,KC_MS_BTN2,_______,_______,
+     _______, KC_T,    KC_Q,    KC_W,    KC_E,    KC_R,                              KC_MS_WH_UP,KC_MS_BTN1,KC_MS_UP,KC_MS_BTN2,_______,_______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, KC_G,    KC_A,    KC_S,    KC_D,    KC_F,                             _______,KC_MS_LEFT,KC_MS_DOWN,KC_MS_RIGHT,_______, _______,
+     _______, KC_G,    KC_A,    KC_S,    KC_D,    KC_F,                             KC_MS_WH_DOWN,KC_MS_LEFT,KC_MS_DOWN,KC_MS_RIGHT,_______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     _______, _______, _______,  _______, TG(6),  _______, _______,          _______, _______, _______, _______, _______,  _______, _______,
+     _______, _______, _______,  _______, TG(6),  _______, _______,          _______, KC_MS_WH_LEFT, KC_MS_WH_RIGHT, _______, _______,  _______, _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, TG(4),   _______,                    _______,  _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -157,7 +157,7 @@ const uint16_t PROGMEM escape_combo_qw[] = {KC_Q, KC_W, COMBO_END};
 const uint16_t PROGMEM backspace_combo_ui[] = {KC_U, KC_I, COMBO_END};
 const uint16_t PROGMEM delete_combo_jk[] = {CTL_J, SFT_K, COMBO_END};
 const uint16_t PROGMEM tictild_combo_we[] = {KC_W, KC_E, COMBO_END};
-const uint16_t PROGMEM quotes_combo_lsemi[] = {ALT_L, GUI_SCLN, COMBO_END};
+const uint16_t PROGMEM semi_combo_lquot[] = {ALT_L, GUI_QUOT, COMBO_END};
 const uint16_t PROGMEM bslashpipe_combo_mcma[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM guitap_combo_xc[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM printscreen_combo_seveneightnine[] = {KC_7, KC_8, KC_9, COMBO_END};
@@ -168,10 +168,9 @@ combo_t key_combos[COMBO_COUNT] = {
     COMBO(backspace_combo_ui, KC_BSPC),
     COMBO(delete_combo_jk, KC_DEL),
     COMBO(tictild_combo_we, KC_GRV),
-    COMBO(quotes_combo_lsemi, KC_QUOT),
+    COMBO(semi_combo_lquot, KC_SCLN),
     COMBO(bslashpipe_combo_mcma, KC_BSLS),
     COMBO(guitap_combo_xc, KC_LGUI),
-    COMBO(printscreen_combo_seveneightnine, KC_PSCR),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -197,7 +196,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         case ALT_S:
         case ALT_L:
             return TAPPING_TERM_MORE;
-        case GUI_SCLN:
+        case GUI_QUOT:
         case GUI_A:
             return TAPPING_TERM_EVEN_MORE;
         default:
