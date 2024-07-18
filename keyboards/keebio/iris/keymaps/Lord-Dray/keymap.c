@@ -7,6 +7,8 @@
  * edit it directly.
  */
 
+//hey, bro, I just added a comment to your keymap file
+ 
 enum custom_keycodes {
 	ID = SAFE_RANGE,
     LIST,
