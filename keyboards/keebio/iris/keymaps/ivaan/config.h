@@ -40,3 +40,5 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define MOUSEKEY_MAX_SPEED 	64 // 	Maximum cursor speed at which acceleration stops
 #define MOUSEKEY_TIME_TO_MAX 	128 // 	Number of frames until maximum cursor speed is reached
 #define MOUSEKEY_FRICTION 	12 // 	How quickly the cursor stops after releasing a key
+
+#define BOTH_SHIFTS_TURNS_ON_CAPS_WORD
