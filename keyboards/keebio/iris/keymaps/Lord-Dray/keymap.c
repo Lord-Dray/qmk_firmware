@@ -19,7 +19,7 @@ enum custom_keycodes {
     EXPLODE,
     COPY,
     UNDO,
-    LINE,
+//  LINE,
     BREAK,
     UCSLEFT,
     UCSFRNT,
@@ -50,6 +50,18 @@ enum custom_keycodes {
     ENDP,
     INTERP,
     CENTERP,
+    MY_D,
+    MY_F,
+};
+
+enum combos {
+  DF_TO_LAYER1,
+};
+
+const uint16_t PROGMEM df_combo[] = {MY_D, MY_F, COMBO_END};
+
+combo_t key_combos[] = {
+    [DF_TO_LAYER1] = COMBO(df_combo, TG(1)),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
@@ -89,7 +101,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CIRCLE:
         if (record->event.pressed) {
             // when keycode QMKBEST is pressed
-            SEND_STRING("CI ");
+            SEND_STRING("CIRCLE ");
         } else {
             // when keycode QMKBEST is released
         }
@@ -134,14 +146,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode QMKBEST is released
         }
         break;
-    case LINE:
-        if (record->event.pressed) {
-            // when keycode QMKBEST is pressed
-            SEND_STRING("L ");
-        } else {
-            // when keycode QMKBEST is released
-        }
-        break;
+//    case LINE:
+//        if (record->event.pressed) {
+//            // when keycode QMKBEST is pressed
+//            SEND_STRING("L ");
+//        } else {
+//            // when keycode QMKBEST is released
+//        }
+//        break;
     case BREAK:
         if (record->event.pressed) {
             // when keycode QMKBEST is pressed
@@ -241,7 +253,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case RECT:
         if (record->event.pressed) {
             // when keycode QMKBEST is pressed
-            SEND_STRING("RECT ");
+            SEND_STRING("RECTANGLE ");
         } else {
             // when keycode QMKBEST is released
         }
@@ -382,6 +394,34 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             // when keycode QMKBEST is released
         }
         break;
+    case MY_F:
+        if (record->event.pressed) {
+            if (layer_state_is(1)) {
+                // --- YOUR LINE MACRO CODE STARTS HERE ---
+                SEND_STRING("L "); 
+                // --- YOUR LINE MACRO CODE ENDS HERE ---
+            } else {
+            register_code(KC_J);
+            }
+        } else {
+            unregister_code(KC_J);
+        }
+        break;
+
+    case MY_D:
+        if (record->event.pressed) {
+            if (layer_state_is(1)) {
+                register_code(KC_LCTL);
+                register_code(KC_Z);
+            } else {
+                register_code(KC_D);
+            }
+        } else {
+            unregister_code(KC_Z);
+            unregister_code(KC_LCTL);
+            unregister_code(KC_D);
+        }
+        break;
     }
     return true;
 };
@@ -389,13 +429,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case 0:
-        rgblight_sethsv(170, 255, 50); //blue
+        rgblight_sethsv(170, 255, 255); //blue
         break;
     case 1:
-        rgblight_sethsv(0, 255, 100); //red
+        rgblight_sethsv(0, 255, 255); //red
         break;
     case 2:
-        rgblight_sethsv(85, 255, 100); //green
+        rgblight_sethsv(85, 255, 255); //green
         break;
     default: //  for any other layers, or the default layer
         rgblight_sethsv(HSV_ORANGE);
@@ -411,7 +451,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤
 	KC_CAPS, KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                                    KC_Y,          KC_U,    KC_I,    KC_O,    KC_P,    KC_DEL, 
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤
-	KC_LSFT, KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                                    KC_H,          KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT, 
+	KC_LSFT, KC_A,    KC_S,    MY_D,    MY_F,    KC_G,                                    KC_H,          KC_J,    KC_K,    KC_L,    KC_SCLN, KC_ENT, 
 // ├────────┼────────┼────────┼────────┼────────┼────────────┼────────────┐┌─────────────┼──────────────┼────────┼────────┼────────┼────────┼────────┤
 	KC_LCTL, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,        KC_CALC,      TG(1),        KC_N,          KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_QUOT, 
 // └────────┴────────┴────────┴────────┼────────┼────────────┼────────────┘└─────────────┼──────────────┴────────┴────────┴────────┴────────┴────────┘
@@ -423,7 +463,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤ 
     KC_TAB,  UCS,     CIRCLE,  TRIM,    STRETCH, EXPLODE,                                 KC_MINS,       KC_7,    KC_8,    KC_9,    KC_PLUS, KC_DEL, 
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤
-	KC_LSFT, RCS(KC_V), COPY,  UNDO,    LINE,    BREAK,                                   KC_RBRC,       KC_4,    KC_5,    KC_6,    KC_EQL,  KC_ENT, 
+	KC_LSFT, RCS(KC_V), COPY,  MY_D,    MY_F,    BREAK,                                   KC_RBRC,       KC_4,    KC_5,    KC_6,    KC_EQL,  KC_ENT, 
 // ├────────┼────────┼────────┼────────┼────────┼────────────┼────────────┐┌─────────────┼──────────────┼────────┼────────┼────────┼────────┼────────┤
 	KC_LCTL, RCS(KC_C), UCSLEFT, UCSFRNT, UCSRGHT, UCSBCK,    ZEROS,        TG(1),        KC_RCBR,       KC_1,    KC_2,    KC_3,    KC_DOT,  KC_UNDS, 
 // └────────┴────────┴────────┴────────┼────────┼────────────┼────────────┘└─────────────┼──────────────┴────────┴────────┴────────┴────────┴────────┘
@@ -435,7 +475,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤
 	KC_TRNS, PLAN,    RECT,    EXTEND,  MIRROR,  BURST,                                   KC_CIRC,       KC_HOME, KC_UP,   KC_PGUP, KC_INS,  KC_DEL,
 // ├────────┼────────┼────────┼────────┼────────┼────────────┤                           ├──────────────┼────────┼────────┼────────┼────────┼────────┤
-	KC_LSFT, PRSSPULL, MOVE,   REDO,    PLINE,   VSCURRENTX,                              KC_UNDS,       KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  KC_ENT,
+	KC_LSFT, PRSSPULL, MOVE,  LCTL(KC_Y), PLINE, VSCURRENTX,                              KC_UNDS,       KC_LEFT, KC_DOWN, KC_RGHT, KC_ENT,  KC_ENT,
 // ├────────┼────────┼────────┼────────┼────────┼────────────┼────────────┐┌─────────────┼──────────────┼────────┼────────┼────────┼────────┼────────┤
 	KC_LCTL, SUBTRACT, UNION,  INTERSECT, MATCHP, MIDDLEP,    ENDP,         KC_TRNS,      KC_TRNS,       KC_END,  KC_DOWN, KC_DOWN, KC_TRNS, KC_TRNS,
 // └────────┴────────┴────────┴────────┼────────┼────────────┼────────────┘└─────────────┼──────────────┴────────┴────────┴────────┴────────┴────────┘
@@ -448,7 +488,6 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
 
 };
 #endif // defined(ENCODER_ENABLE) && defined(ENCODER_MAP_ENABLE)
-
 
 void matrix_init_user(void) {
    backlight_enable();
